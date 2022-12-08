@@ -4,15 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Что_то_на_казахском
 {
-    internal class ApplicationContext: DbContext
+    internal class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext
     {
 
-        public DbSet<Employer> Employers { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<Employer> Employers { get; set; } = null!;
 
-        public ApplicationContext() : base("DefaultConnection") { }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=D:\\repos\\Что-то на казахском\\DataBase.db");
+        }
 
     }
 }

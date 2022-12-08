@@ -11,46 +11,22 @@ namespace Что_то_на_казахском
 
         public int id { set; get; }
 
-        private string first_name, second_name, third_name, phone, birthday, departament;
+        public string first_name { set; get; }
 
-        public string First_name
-        {
-            get { return first_name; }
-            set { first_name = value; }
-        }
+        public string second_name { set; get; }
 
-        public string Second_name
-        {
-            get { return second_name; }
-            set { second_name = value; }
-        }
+        public string third_name { set; get; }
 
-        public string Third_name
-        {
-            get { return third_name; }
-            set { third_name = value; }
-        }
+        public string phone { set; get; }
 
-        public string Phone
-        {
-            get { return phone; }
-            set { phone = value; }
-        }
+        public string birthday { set; get; }
 
-        public string Birthday
-        {
-            get { return birthday; }
-            set { birthday = value; }
-        }
-        public string Departament
-        {
-            get { return departament; }
-            set { departament = value; }
-        }
+        public string departament { set; get; }
 
         public Employer() { }
 
-        public Employer(string first_name, string second_name, string third_name, string phone, string birthday, string departament) {
+        public Employer(int id, string first_name, string second_name, string third_name, string phone, string birthday, string departament) {
+            this.id = id;
             this.first_name = first_name;
             this.second_name = second_name;
             this.third_name = third_name;
