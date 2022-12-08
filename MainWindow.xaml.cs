@@ -33,6 +33,7 @@ namespace Что_то_на_казахском
 
         private void Button_AddEmpl_Click(object sender, RoutedEventArgs e)
         {
+            int id = int.Parse(ID.Text.Trim());
             string first_name = First_Name.Text.Trim();
             string second_name = Second_Name.Text.Trim();
             string third_name = Third_Name.Text.Trim();
@@ -79,7 +80,7 @@ namespace Что_то_на_казахском
                 Departament.Background = Brushes.Transparent;
 
                 MessageBox.Show("Пользователь успешно добавлен.");
-                Employer employer = new(first_name, second_name, third_name, phone, birthday, departament);
+                Employer employer = new(id, first_name, second_name, third_name, phone, birthday, departament);
 
                 db.Employers.Add(employer);
                 db.SaveChanges();
