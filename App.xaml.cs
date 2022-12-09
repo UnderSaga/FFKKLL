@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Что_то_на_казахском
+namespace PracticeTRPO
 {
     /// <summary>
     /// Interaction logic for App.xaml

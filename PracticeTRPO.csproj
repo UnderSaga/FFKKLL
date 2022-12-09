@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
-    <RootNamespace>Что_то_на_казахском</RootNamespace>
+    <RootNamespace>PracticeTRPO</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>

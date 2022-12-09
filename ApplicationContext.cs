@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Что_то_на_казахском
+namespace PracticeTRPO
 {
     internal class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext
     {

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Что_то_на_казахском
+namespace PracticeTRPO
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -33,7 +33,8 @@ namespace Что_то_на_казахском
 
         private void Button_AddEmpl_Click(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(ID.Text.Trim());
+            int result;
+            bool success = int.TryParse(ID.Text, out result);
             string first_name = First_Name.Text.Trim();
             string second_name = Second_Name.Text.Trim();
             string third_name = Third_Name.Text.Trim();
@@ -80,7 +81,14 @@ namespace Что_то_на_казахском
                 Departament.Background = Brushes.Transparent;
 
                 MessageBox.Show("Пользователь успешно добавлен.");
-                Employer employer = new(id, first_name, second_name, third_name, phone, birthday, departament);
+                Employer employer = new();
+                employer.Id = result;
+                employer.FirstName = first_name;
+                employer.SecondName = second_name;
+                employer.ThirdName  = third_name;
+                employer.Phone  = phone;
+                employer.Birthday = birthday;
+                employer.Departament = departament;
 
                 db.Employers.Add(employer);
                 db.SaveChanges();
