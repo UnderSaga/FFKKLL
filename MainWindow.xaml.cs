@@ -33,8 +33,10 @@ namespace PracticeTRPO
 
         private void Button_AddEmpl_Click(object sender, RoutedEventArgs e)
         {
+
             int result;
             bool success = int.TryParse(ID.Text, out result);
+
             string first_name = First_Name.Text.Trim();
             string second_name = Second_Name.Text.Trim();
             string third_name = Third_Name.Text.Trim();
@@ -81,6 +83,7 @@ namespace PracticeTRPO
                 Departament.Background = Brushes.Transparent;
 
                 MessageBox.Show("Пользователь успешно добавлен.");
+
                 Employer employer = new();
                 employer.Id = result;
                 employer.FirstName = first_name;
