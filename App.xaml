@@ -1,7 +1,7 @@
-﻿<Application x:Class="Что_то_на_казахском.App"
+﻿<Application x:Class="PracticeTRPO.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Что_то_на_казахском"
+             xmlns:local="clr-namespace:PracticeTRPO"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
