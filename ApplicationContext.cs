@@ -15,7 +15,7 @@ namespace PracticeTRPO
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=D:\\repos\\Что-то на казахском\\DataBase.db");
+            optionsBuilder.UseSqlite("Data Source=MyDB.db");
         }
 
     }

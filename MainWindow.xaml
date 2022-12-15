@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PracticeTRPO"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="600">
-    <Grid HorizontalAlignment="Stretch">
+    <Grid>
         <TextBox x:Name="ID" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="First_Name" HorizontalAlignment="Center" Margin="0,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Second_Name" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
