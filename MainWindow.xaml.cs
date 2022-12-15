@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,88 +16,84 @@ using System.Windows.Shapes;
 
 namespace PracticeTRPO
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-
     public partial class MainWindow : Window
     {
-
-        ApplicationContext db;
-
+        ApplicationContext db = new ApplicationContext();
         public MainWindow()
         {
             InitializeComponent();
 
-            db = new ApplicationContext();
+            Loaded += MainWindow_Loaded;
         }
 
-        private void Button_AddEmpl_Click(object sender, RoutedEventArgs e)
+        // при загрузке окна
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            // гарантируем, что база данных создана
+            db.Database.EnsureCreated();
+            // загружаем данные из БД
+            db.Employers.Load();
+            // и устанавливаем данные в качестве контекста
+            DataContext = db.Employers.Local.ToObservableCollection();
+        }
 
-            int result;
-            bool success = int.TryParse(ID.Text, out result);
-
-            string first_name = First_Name.Text.Trim();
-            string second_name = Second_Name.Text.Trim();
-            string third_name = Third_Name.Text.Trim();
-            string phone = Phone.Text.Trim();
-            string birthday = Birthday.Text.Trim();
-            string departament = Departament.Text.Trim();
-
-            if (first_name.Length < 1)
+        // добавление
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            EmployerWindow EmployerWindow = new EmployerWindow(new Employer());
+            if (EmployerWindow.ShowDialog() == true)
             {
-                First_Name.ToolTip = "Поле не должно быть пустым!";
-                First_Name.Background = Brushes.IndianRed;
-            }
-            else if (second_name.Length < 1)
-            {
-                Second_Name.ToolTip = "Поле не должно быть пустым!";
-                Second_Name.Background = Brushes.IndianRed;
-            }
-            else if (phone.Length < 1)
-            {
-                Phone.ToolTip = "Поле не должно быть пустым!";
-                Phone.Background = Brushes.IndianRed;
-            }
-            else if (birthday.Length < 1)
-            {
-                Birthday.ToolTip = "Поле не должно быть пустым!";
-                Birthday.Background = Brushes.IndianRed;
-            }
-            else if (departament.Length < 1)
-            {
-                Departament.ToolTip = "Поле не должно быть пустым!";
-                Departament.Background = Brushes.IndianRed;
-            }
-            else
-            {
-                First_Name.ToolTip = "";
-                First_Name.Background = Brushes.Transparent;
-                Second_Name.ToolTip = "";
-                Second_Name.Background = Brushes.Transparent;
-                Phone.ToolTip = "";
-                Phone.Background = Brushes.Transparent;
-                Birthday.ToolTip = "";
-                Birthday.Background = Brushes.Transparent;
-                Departament.ToolTip = "";
-                Departament.Background = Brushes.Transparent;
-
-                MessageBox.Show("Пользователь успешно добавлен.");
-
-                Employer employer = new();
-                employer.Id = result;
-                employer.FirstName = first_name;
-                employer.SecondName = second_name;
-                employer.ThirdName  = third_name;
-                employer.Phone  = phone;
-                employer.Birthday = birthday;
-                employer.Departament = departament;
-
-                db.Employers.Add(employer);
+                Employer Employer = EmployerWindow.Employer;
+                db.Employers.Add(Employer);
                 db.SaveChanges();
             }
         }
-    }
+        // редактирование
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            // получаем выделенный объект
+            Employer? employer = employersList.SelectedItem as Employer;
+            // если ни одного объекта не выделено, выходим
+            if (employer is null) return;
 
+            EmployerWindow EmployerWindow = new EmployerWindow(new Employer
+            {
+                Id = employer.Id,
+                FirstName = employer.FirstName,
+                SecondName = employer.SecondName,
+                ThirdName = employer.ThirdName,
+                Phone = employer.Phone,
+                Birthday = employer.Birthday,
+                Departament = employer.Departament
+            });
+
+            if (EmployerWindow.ShowDialog() == true)
+            {
+                // получаем измененный объект
+                employer = db.Employers.Find(EmployerWindow.Employer.Id);
+                if (employer != null)
+                {
+                    employer.Id = EmployerWindow.Employer.Id;
+                    employer.FirstName = EmployerWindow.Employer.FirstName;
+                    employer.SecondName = EmployerWindow.Employer.SecondName;
+                    employer.ThirdName = EmployerWindow.Employer.ThirdName;
+                    employer.Phone = EmployerWindow.Employer.Phone;
+                    employer.Birthday = EmployerWindow.Employer.Birthday;
+                    employer.Departament = EmployerWindow.Employer.Departament;
+                    db.SaveChanges();
+                    employersList.Items.Refresh();
+                }
+            }
+        }
+        // удаление
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            // получаем выделенный объект
+            Employer? employer = employersList.SelectedItem as Employer;
+            // если ни одного объекта не выделено, выходим
+            if (employer is null) return;
+            db.Employers.Remove(employer);
+            db.SaveChanges();
+        }
+    }
 }

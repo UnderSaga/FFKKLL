@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PracticeTRPO
 {
-    internal class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext
+    class ApplicationContext : Microsoft.EntityFrameworkCore.DbContext
     {
 
         public Microsoft.EntityFrameworkCore.DbSet<Employer> Employers { get; set; } = null!;

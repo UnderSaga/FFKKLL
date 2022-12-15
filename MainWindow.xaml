@@ -7,13 +7,29 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="600">
     <Grid>
-        <TextBox x:Name="ID" HorizontalAlignment="Center" Margin="0,51,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="First_Name" HorizontalAlignment="Center" Margin="0,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Second_Name" HorizontalAlignment="Center" Margin="0,97,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Third_Name" HorizontalAlignment="Center" Margin="0,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Phone" HorizontalAlignment="Center" Margin="0,143,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Birthday" HorizontalAlignment="Center" Margin="0,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Departament" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="0,190,0,0"/>
-        <Button Content="Добавить сотрудника" Margin="228,213,228,0" VerticalAlignment="Top" Click="Button_AddEmpl_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="employersList" ItemsSource="{Binding}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Id}" FontSize="13" />
+                        <TextBlock Text="{Binding FirstName}" FontSize="13" />
+                        <TextBlock Text="{Binding SecondName}" FontSize="13" />
+                        <TextBlock Text="{Binding ThirdName}" FontSize="13" />
+                        <TextBlock Text="{Binding Phone}" FontSize="13" />
+                        <TextBlock Text="{Binding Birthday}" FontSize="13" />
+                        <TextBlock Text="{Binding Departament}" FontSize="13" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Добавить" Margin="10" Click="Add_Click" />
+            <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
+            <Button Content="Удалить" Margin="10" Click="Delete_Click"  />
+        </StackPanel>
     </Grid>
 </Window>

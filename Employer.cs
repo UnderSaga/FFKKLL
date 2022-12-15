@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace PracticeTRPO
 {
-    class Employer
+    public class Employer
     {
-
 
         public int Id { set; get; }
 
