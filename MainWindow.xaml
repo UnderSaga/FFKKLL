@@ -30,6 +30,7 @@
             <Button Content="Добавить" Margin="10" Click="Add_Click" />
             <Button Content="Изменить" Margin="10" Click="Edit_Click"  />
             <Button Content="Удалить" Margin="10" Click="Delete_Click"  />
+            <Button Content="Сохранить в JSON" Margin="10" Click="SaveAs_Click" />
         </StackPanel>
     </Grid>
 </Window>

@@ -1,18 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Text.Json;
+using System.IO;
+using System;
 
 namespace PracticeTRPO
 {
@@ -94,6 +84,19 @@ namespace PracticeTRPO
             if (employer is null) return;
             db.Employers.Remove(employer);
             db.SaveChanges();
+        }
+
+        private void SaveAs_Click(object sender, RoutedEventArgs e)
+        {
+
+            Employer? employer = employersList.SelectedItem as Employer;
+
+            string fileName = "Employer.json";
+            string jsonString = JsonSerializer.Serialize(employer);
+            File.WriteAllText(fileName, jsonString);
+
+            Console.WriteLine(File.ReadAllText(fileName));
+
         }
     }
 }
