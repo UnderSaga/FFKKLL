@@ -89,10 +89,8 @@ namespace PracticeTRPO
         private void SaveAs_Click(object sender, RoutedEventArgs e)
         {
 
-            Employer? employer = employersList.SelectedItem as Employer;
-
             string fileName = "Employer.json";
-            string jsonString = JsonSerializer.Serialize(employer);
+            string jsonString = JsonSerializer.Serialize(db.Employers);
             File.WriteAllText(fileName, jsonString);
 
             Console.WriteLine(File.ReadAllText(fileName));
